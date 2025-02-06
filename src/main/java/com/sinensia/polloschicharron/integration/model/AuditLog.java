@@ -20,7 +20,6 @@ public class AuditLog {
 	private String ipAddress;
 	private LocalDateTime timestamps;
 
-	// Getters y Setters
 	public Long getId() {
 		return id;
 	}

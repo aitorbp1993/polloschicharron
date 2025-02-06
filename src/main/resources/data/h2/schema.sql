@@ -1,3 +1,9 @@
+-- ******************************************************
+-- 
+--                    SECUENCIADORES
+-- 
+-- ******************************************************
+
 CREATE SEQUENCE "PERSONA_SEQ"
 	MINVALUE 1
 	MAXVALUE 999999999
@@ -29,6 +35,20 @@ CREATE SEQUENCE "FAMILIA_SEQ"
     START WITH 5000 
     NOCACHE 
     NOCYCLE;
+    
+CREATE SEQUENCE "AUDIT_SEQ" 
+      MINVALUE 1 
+    MAXVALUE 999999999 
+    INCREMENT BY 50 
+    START WITH 5000 
+    NOCACHE 
+    NOCYCLE;
+    
+-- ******************************************************
+-- 
+--                       MODEL 
+-- 
+-- ******************************************************
 
 CREATE TABLE FAMILIAS(
 	ID				BIGINT			NOT NULL,
@@ -116,4 +136,15 @@ CREATE TABLE LINEAS_PEDIDO(
 	PRECIO							DOUBLE			,
 	FOREIGN KEY (CODIGO_PEDIDO) REFERENCES PEDIDOS (CODIGO),
 	FOREIGN KEY (CODIGO_PRODUCTO) REFERENCES PRODUCTOS (CODIGO)
+);
+
+
+
+CREATE TABLE AUDITLOG (
+    ID                              BIGINT 			    NOT NULL,
+    HTTP_METHOD                     VARCHAR(10)         NOT NULL,
+    PATH                            VARCHAR(255)        NOT NULL,
+    IP_ADDRESS                      VARCHAR(45)                 ,
+    TIMESTAMPS                      TIMESTAMP           NOT NULL,
+    PRIMARY KEY (ID)
 );
